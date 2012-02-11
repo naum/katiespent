@@ -1,16 +1,11 @@
-var Shape = Backbone.Model.extend({
-    defaults: { x:50, y:50, width:150, height:150, color:'red' },
-    setDim: function(w, h) {
-        this.set({ width:w, height:h });
-    },
-    setTopLeft: function(x, y) {
-        this.set({ x:x, y:y });
-    }
+var League = Backbone.Model.extend({
 });
 
-var shape = new Shape();
-shape.bind('change', function() { alert('changed!'); });
-shape.bind('change:width', function() { alert('width changed! ' + shape.get('width')); });
-
-shape.set({ width:170 });
-shape.setTopLeft(100, 100);
+$(document).ready(function() {
+    var hout = '';
+    for (var i = 0; i < 9; i += 1) {
+        var m = UBA.Man.spawn();
+        hout += UBA.Man.display(m) + '<br>';
+    }
+    $('#pagecanvas').html('<div class="mono">' + hout + '</div>');
+});
