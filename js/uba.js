@@ -1,7 +1,8 @@
 var UBA = {
 
     data: {
-        freeagents: []
+        freeagents: [],
+        namepool: []
     },
 
     Man: {
@@ -14,7 +15,7 @@ var UBA = {
             'G': [ 'e', '', 'G', '&' ],
             'T': [ 'x', '', 'T', '@' ]
         },
-        display: function(m) {
+        displaySkillCard: function(m) {
             var dout = '';
             $.each(m.skill, function(sk, v) {
                 dout += UBA.Man.SKILLMARK[sk][v];
@@ -40,7 +41,30 @@ var UBA = {
             for (var i = 0; i < UBA.Man.SKILLCHART.length; i += 1) {
                 skdict[UBA.Man.SKILLCHART[i]] = this.randSkill();
             }
-            return { skill: skdict };
+            var mancard = {
+                name: UBA.Namepool.draw(),
+                skill: skdict
+            }
+            return mancard;
+        }
+    },
+
+    Namepool: {
+        draw: function() {
+            if (UBA.data.namepool.length == 0) {
+                UBA.Namepool.replenish();
+            }
+            return UBA.data.namepool.pop();
+        },
+        replenish: function() {
+            $.ajax({
+                url: '/words.txt', 
+                async: false, 
+                success: function(d) {
+                    var wordlist = d.split('\n');
+                    UBA.data.namepool = _.shuffle(wordlist);
+                }
+            });
         }
     }
 

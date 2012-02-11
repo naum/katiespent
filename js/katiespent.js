@@ -5,7 +5,11 @@ $(document).ready(function() {
     var hout = '';
     for (var i = 0; i < 9; i += 1) {
         var m = UBA.Man.spawn();
-        hout += UBA.Man.display(m) + '<br>';
+        hout += '<tr><td class="celtex">' +
+            m.name +
+            '<td class="celtex">' + 
+            UBA.Man.displaySkillCard(m) +
+            '</tr>';
     }
-    $('#pagecanvas').html('<div class="mono">' + hout + '</div>');
+    $('#pagecanvas').html('<table class="mono">' + hout + '</table>');
 });

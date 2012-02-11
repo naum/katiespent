@@ -8,6 +8,11 @@ h1 {
     text-align: center;
 }
 
+.celtex {
+    padding: 0.16em 1em;
+    text-align: left;
+}
+
 .mono {
     font-family: monospace;
 }
