@@ -7,9 +7,9 @@ $(document).ready(function() {
         var m = UBA.Man.spawn();
         hout += '<tr><td class="celtex">' +
             m.name +
-            '<td class="celtex">' + 
+            '<td class="celtex mono">' + 
             UBA.Man.displaySkillCard(m) +
             '</tr>';
     }
-    $('#pagecanvas').html('<table class="mono">' + hout + '</table>');
+    $('#pagecanvas').html('<table>' + hout + '</table>');
 });

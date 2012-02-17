@@ -2,7 +2,9 @@ var UBA = {
 
     data: {
         freeagents: [],
-        namepool: []
+        namepool: [],
+        passkey: null,
+        seasonnum: 0
     },
 
     Man: {
