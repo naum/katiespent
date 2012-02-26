@@ -1,11 +1,15 @@
 body {
-    font-family: Palatino, serif;
+    font-family: Courier, monospace;
     margin: 1.33em auto;
     width: 720px;
 }
 
 h1 {
     text-align: center;
+}
+
+.cardchart {
+    margin: auto;
 }
 
 .celtex {
