@@ -4,9 +4,11 @@ var League = Backbone.Model.extend({
 $(document).ready(function() {
     var hout = '';
     for (var i = 0; i < 13; i += 1) {
-        var m = UBA.Man.spawn();
+        var m = UBA.Man.spawn('H');
         hout += '<tr><td class="celtex">' +
-            m.name +
+            m.pos + '<td class="celtex">' + m.name +
+            '<td class="celtex mono">' + 
+            UBA.Man.displayAttrCard(m) +
             '<td class="celtex mono">' + 
             UBA.Man.displaySkillCard(m) +
             '</tr>';

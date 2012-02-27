@@ -1,4 +1,14 @@
+
+var ATTRLIST = [ 'A', 'D', 'H', 'O' ];
+var SKILLMATRIX = {
+    'F': [ 'W', 'K', 'P', 'R', 'G', 'T' ],
+    'H': [ 'W', 'K', 'P', 'R' ],
+    'P': [ 'W', 'K', 'P', 'G', 'T' ]
+};
+
 var UBA = {
+    
+    TOTALCLUBS: 32,
 
     data: {
         freeagents: [],
@@ -10,14 +20,23 @@ var UBA = {
     genesis: function() {
     },
 
+    Club: {
+        ROSTERMATRIX: {
+            'O': { slots:3, skillchart: SKILLMATRIX['F'] },
+            'I': { slots:4, skillchart: SKILLMATRIX['F'] },
+            'C': { slots:1, skillchart: SKILLMATRIX['F'] },
+            'H': { slots:1, skillchart: SKILLMATRIX['H'] },
+            'P': { slots:4, skillchart: SKILLMATRIX['P'] }
+        }
+    },
+
     Man: {
-        ATTRCHART: {
+        ATTRMARK: {
             'A': [ 'y', '', 'V', '~', '~~' ],
             'D': [ 'z', '', 'I', '>', '>>' ],
             'H': [ 'd', '', 'L', '=', '==' ],
             'O': [ 'b', '', 'H', '$', '$$' ]
         },
-        SKILLCHART: [ 'W', 'K', 'P', 'R', 'G', 'T' ],
         SKILLMARK: {
             'W': [ 'w', '', 'C', '^', '^^' ],
             'K': [ 'm', '', 'K', '#', '##' ],
@@ -26,6 +45,13 @@ var UBA = {
             'G': [ 'e', '', 'G', '&', '&&' ],
             'T': [ 'x', '', 'T', '@', '@@' ]
         },
+        displayAttrCard: function(m) {
+            var dout = '';
+            $.each(m.attr, function(sk, v) {
+                dout += UBA.Man.ATTRMARK[sk][v];
+            });
+            return dout;
+        },
         displaySkillCard: function(m) {
             var dout = '';
             $.each(m.skill, function(sk, v) {
@@ -33,7 +59,7 @@ var UBA = {
             });
             return dout;
         },
-        randSkill: function() {
+        randQuality: function() {
             var sk = null;
             var x = Math.floor(Math.random() * 432) + 1;
             if (x <= 125) {
@@ -49,15 +75,23 @@ var UBA = {
             }
             return sk;
         },
-        spawn: function() {
-            var skdict = {};
-            for (var i = 0; i < UBA.Man.SKILLCHART.length; i += 1) {
-                skdict[UBA.Man.SKILLCHART[i]] = this.randSkill();
+        spawn: function(p) {
+            var attrdict = {}, skdict = {};
+            var l = UBA.Club.ROSTERMATRIX[p].skillchart.length;
+            for (var i = 0; i < l; i += 1) {
+                var sk = UBA.Club.ROSTERMATRIX[p].skillchart[i];
+                skdict[sk] = this.randQuality();
+            }
+            for (var i = 0; i < ATTRLIST.length; i += 1) {
+                attrdict[ATTRLIST[i]] = this.randQuality();
             }
             var mancard = {
+                pos: p,
                 name: UBA.Namepool.draw(),
+                attr: attrdict,
                 skill: skdict
             }
+            console.log('mancard=' + JSON.stringify(mancard));
             return mancard;
         }
     },
