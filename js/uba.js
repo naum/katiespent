@@ -11,6 +11,7 @@ var UBA = {
     TOTALCLUBS: 32,
 
     data: {
+        clubs: [],
         freeagents: [],
         namepool: [],
         passkey: null,
