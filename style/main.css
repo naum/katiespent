@@ -3,6 +3,7 @@ body {
     color: #EFF4F3;
     font-family: Courier, monospace;
     font-size: 100%;
+    line-height: 1.33em;
     margin: 1.33em auto;
     width: 720px;
 }
