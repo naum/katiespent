@@ -7,15 +7,35 @@ body {
     font-size: 100%;
     line-height: 1.33em;
     margin: 1.33em auto;
+    text-shadow: #16221F 0.0625em 0.0625em 0.0625em;
     width: 720px;
 }
 
 h1 {
     text-align: center;
+    text-shadow: #16221F 0.125em 0.125em 0.125em;
+}
+
+table {
+    border-collapse: collapse;
 }
 
 .cardchart {
     margin: auto;
+}
+
+.cardchart tr {
+    padding-top: 0.33em;
+    padding-bottom: 0.33em;
+}
+
+.cardchart th {
+    border-top: 2px solid #81A69E;
+    border-bottom: 1px solid #81A69E;
+}
+
+.cardchart tr, .cardchart td {
+    border-bottom: 1px solid #41665E;
 }
 
 .celtex {
