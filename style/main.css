@@ -1,5 +1,8 @@
 body {
+    background: #2B443F;
+    color: #EFF4F3;
     font-family: Courier, monospace;
+    font-size: 100%;
     margin: 1.33em auto;
     width: 720px;
 }
