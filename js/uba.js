@@ -18,6 +18,12 @@ var UBA = {
         seasonnum: 0
     },
 
+    ageMan: function() {
+    },
+
+    fluctuateManSkills: function() {
+    },
+
     genesis: function() {
     },
 
