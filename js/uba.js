@@ -39,30 +39,54 @@ var UBA = {
 
     Man: {
         ATTRMARK: {
-            'A': [ 'y', '', 'V', '~', '~~' ],
-            'D': [ 'z', '', 'I', '>', '>>' ],
-            'H': [ 'd', '', 'L', '=', '==' ],
-            'O': [ 'b', '', 'H', '$', '$$' ]
+            'A': [ 'y', '', 'V', '~' ],
+            'D': [ 'z', '', 'I', '>' ],
+            'H': [ 'd', '', 'L', '=' ],
+            'O': [ 'b', '', 'H', '$' ]
         },
         SKILLMARK: {
-            'W': [ 'w', '', 'C', '^', '^^' ],
-            'K': [ 'm', '', 'K', '#', '##' ],
-            'P': [ 'n', '', 'P', '!', '!!' ],
-            'R': [ 's', '', 'R', '+', '++' ],
-            'G': [ 'e', '', 'G', '&', '&&' ],
-            'T': [ 'x', '', 'T', '@', '@@' ]
+            'W': [ 'w', '', 'C', '^' ],
+            'K': [ 'm', '', 'K', '#' ],
+            'P': [ 'n', '', 'P', '!' ],
+            'R': [ 's', '', 'R', '+' ],
+            'G': [ 'e', '', 'G', '&' ],
+            'T': [ 'x', '', 'T', '@' ]
         },
         displayAttrCard: function(m) {
             var dout = '';
             $.each(m.attr, function(sk, v) {
-                dout += UBA.Man.ATTRMARK[sk][v];
+                if (v < 0) {
+                    var r = 0 - v + 1;
+                    _.times(r, function() { 
+                        dout += UBA.Man.ATTRMARK[sk][0];
+                    });
+                } else if (v <= 3) {
+                    dout += UBA.Man.ATTRMARK[sk][v];
+                } else {
+                    var r = v - 3 + 1;
+                    _.times(r, function() { 
+                        dout += UBA.Man.ATTRMARK[sk][3];
+                    });
+                }
             });
             return dout;
         },
         displaySkillCard: function(m) {
             var dout = '';
             $.each(m.skill, function(sk, v) {
-                dout += UBA.Man.SKILLMARK[sk][v];
+                if (v < 0) {
+                    var r = 0 - v + 1;
+                    _.times(r, function() { 
+                        dout += UBA.Man.SKILLMARK[sk][0];
+                    });
+                } else if (v <= 3) {
+                    dout += UBA.Man.SKILLMARK[sk][v];
+                } else {
+                    var r = v - 3 + 1;
+                    _.times(r, function() { 
+                        dout += UBA.Man.SKILLMARK[sk][3];
+                    });
+                }
             });
             return dout;
         },
