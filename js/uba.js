@@ -25,6 +25,14 @@ var UBA = {
     },
 
     genesis: function() {
+        var i;
+        for (i = 0; i < UBA.TOTALCLUBS; i += 1) {
+            $.each(UBA.Club.ROSTERMATRIX, function(p, r) {
+                _.times(r.slots, function() {
+                    UBA.data.freeagents.push(UBA.Man.spawn(p));
+                });
+            });
+        }
     },
 
     Club: {
@@ -122,8 +130,16 @@ var UBA = {
                 attr: attrdict,
                 skill: skdict
             }
-            console.log('mancard=' + JSON.stringify(mancard));
+            //console.log('mancard=' + JSON.stringify(mancard));
             return mancard;
+        },
+        worth: function(m) {
+            var t = 0, tsk = 0;
+            $.each(m.skill, function(s, sv) {
+                t += 1;
+                tsk += sv;
+            });
+            return (tsk / t);
         }
     },
 
