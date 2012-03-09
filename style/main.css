@@ -39,6 +39,11 @@ table {
     border-bottom: 1px solid #41665E;
 }
 
+.celnum {
+    padding: 0.16em 1em;
+    text-align: right;
+}
+
 .celtex {
     padding: 0.16em 1em;
     text-align: left;
