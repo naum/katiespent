@@ -4,10 +4,11 @@ $(document).ready(function() {
         ok(UBA, "no UBA defined");
     });
 
-    test("UBA loaded", function() {
-        UBA.genesis();
-        equal(UBA.data.clubs.length, 32, 
-            "total clubs: " + UBA.data.clubs.length);
+    UBA.genesis();
+    var totfa = UBA.data.freeagents.length;
+    test("UBA loaded " + totfa + " freeagents", function() {
+        equal(UBA.data.freeagents.length, UBA.TOTALCLUBS * 13, 
+            "total freeagents: " + UBA.data.freeagents.length);
     });
 
 });
