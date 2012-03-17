@@ -18,6 +18,9 @@ var UBA = {
         seasonnum: 0
     },
 
+    advanceSeason: function() {
+    },
+
     ageMan: function() {
     },
 
