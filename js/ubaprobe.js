@@ -32,7 +32,7 @@ $(document).ready(function() {
             var meanattr = calcMeanAttr();
             ok(meanattr > 0.95 && meanattr < 1.05, 'mean attr: ' + meanattr);
             var meanage = calcMeanAge();
-            ok(meanage > 0.9166 && meanage < 1.0833, 'mean age: ' + meanage);
+            ok(meanage > 0.9 && meanage < 1.1, 'mean age: ' + meanage);
         }
     });
 
