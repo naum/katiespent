@@ -5,6 +5,13 @@ var SKILLMATRIX = {
     'H': [ 'W', 'K', 'P', 'R' ],
     'P': [ 'W', 'K', 'P', 'G', 'T' ]
 };
+var SKILLPLANE = [
+    0, 1, 3, 6, 10, 15, 21, 26, 30, 33, 35, 36
+];
+
+var rng = function(n) {
+    return Math.floor(Math.random() * n);
+};
 
 var UBA = {
     
@@ -12,16 +19,35 @@ var UBA = {
 
     data: {
         clubs: [],
+        draftneeds: [],
         freeagents: [],
         namepool: [],
         passkey: null,
+        retired: [],
         seasonnum: 0
     },
 
     advanceSeason: function() {
+        this.ageMan();
+        this.restockMan();
+        UBA.data.seasonnum += 1;
     },
 
     ageMan: function() {
+        var a, m, nfal = [], t, x, z;
+        while (m = UBA.data.freeagents.pop()) { 
+            t = SKILLPLANE[m.attr['A'] + 2];
+            x = rng(36) + 1;
+            if (x <= t) {
+                UBA.data.retired.push(m);
+                UBA.data.draftneeds.push(m.pos);
+            } else {
+                z = rng(12) + 1;
+                if (z <= 1) { m.attr['A'] += 1; }
+                nfal.push(m); 
+            }
+        }
+        UBA.data.freeagents = nfal;
     },
 
     fluctuateManSkills: function() {
@@ -35,6 +61,13 @@ var UBA = {
                     UBA.data.freeagents.push(UBA.Man.spawn(p));
                 });
             });
+        }
+    },
+
+    restockMan: function() {
+        var p;
+        while (p = UBA.data.draftneeds.pop()) {
+            UBA.data.freeagents.push(UBA.Man.spawn(p));
         }
     },
 

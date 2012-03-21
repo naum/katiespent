@@ -11,19 +11,29 @@ $(document).ready(function() {
             "total freeagents: " + UBA.data.freeagents.length);
     });
 
-    var meanskill = calcMeanSkill();
-    test("Mean skill within bounds", function() {
+    test("Mean skill, mean attribute, mean age within bounds", function() {
+        var meanskill = calcMeanSkill();
         ok(meanskill > 0.95 && meanskill < 1.05, 'mean skill: ' + meanskill); 
-    });
-
-    var meanattr = calcMeanAttr();
-    test("Mean attribute within bounds", function() {
+        var meanattr = calcMeanAttr();
         ok(meanattr > 0.95 && meanattr < 1.05, 'mean attr: ' + meanattr);
+        var meanage = calcMeanAge();
+        ok(meanage > 0.9166 && meanage < 1.0833, 'mean age: ' + meanage);
     });
 
-    var meanage = calcMeanAge();
-    test("Mean age within bounds", function() {
-        ok(meanage > 0.9166 && meanage < 1.0833, 'mean age: ' + meanage);
+    test("League aging", function() {
+        var i;
+        for (i = 0; i < 40; i += 1) {
+            UBA.advanceSeason();
+            equal(UBA.data.seasonnum, i + 1, 'seasonnum: ' + UBA.data.seasonnum);
+            equal(UBA.data.freeagents.length, UBA.TOTALCLUBS * 13, 
+                "total freeagents: " + UBA.data.freeagents.length);
+            var meanskill = calcMeanSkill();
+            ok(meanskill > 0.95 && meanskill < 1.05, 'mean skill: ' + meanskill); 
+            var meanattr = calcMeanAttr();
+            ok(meanattr > 0.95 && meanattr < 1.05, 'mean attr: ' + meanattr);
+            var meanage = calcMeanAge();
+            ok(meanage > 0.9166 && meanage < 1.0833, 'mean age: ' + meanage);
+        }
     });
 
 });
