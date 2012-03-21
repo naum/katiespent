@@ -28,13 +28,14 @@ var UBA = {
     },
 
     advanceSeason: function() {
+        this.fluctuateManSkills();
         this.ageMan();
         this.restockMan();
         UBA.data.seasonnum += 1;
     },
 
     ageMan: function() {
-        var a, m, nfal = [], t, x, z;
+        var m, nfal = [], t, x, z;
         while (m = UBA.data.freeagents.pop()) { 
             t = SKILLPLANE[m.attr['A'] + 2];
             x = rng(36) + 1;
@@ -51,6 +52,25 @@ var UBA = {
     },
 
     fluctuateManSkills: function() {
+        var a, i, m, o, skminmark, skplumark, 
+            totfa = UBA.data.freeagents.length, x;
+        for (i = 0; i < totfa; i += 1) {
+            m = UBA.data.freeagents[i];
+            a = (1 - m.attr['A']) + 3;
+            skplumark = SKILLPLANE[a] * SKILLPLANE[m.attr['D'] + 2];
+            o = (1 - m.attr['O']) + 3;
+            skminmark = SKILLPLANE[m.attr['A'] + 2] * SKILLPLANE[o];
+            $.each(m.skill, function(sk) {
+                x = rng(1296) + 1;
+                if (x <= skplumark) { 
+                    m.skill[sk] += 1; 
+                }
+                x = rng(1296) + 1;
+                if (x <= skminmark) { 
+                    m.skill[sk] -= 1; 
+                }
+            });
+        }
     },
 
     genesis: function() {

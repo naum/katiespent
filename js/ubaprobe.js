@@ -22,7 +22,7 @@ $(document).ready(function() {
 
     test("League aging", function() {
         var i;
-        for (i = 0; i < 40; i += 1) {
+        for (i = 0; i < 500; i += 1) {
             UBA.advanceSeason();
             equal(UBA.data.seasonnum, i + 1, 'seasonnum: ' + UBA.data.seasonnum);
             equal(UBA.data.freeagents.length, UBA.TOTALCLUBS * 13, 
