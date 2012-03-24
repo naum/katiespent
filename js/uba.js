@@ -1,5 +1,15 @@
 
 var ATTRLIST = [ 'A', 'D', 'H', 'O' ];
+var CITYPOOL = [
+    'New York', 'Los Angeles', 'Chicago', 'Dallas',
+    'Philadelphia', 'Houston', 'Washington', 'Miami',
+    'Atlanta', 'Boston', 'San Francisco', 'Detroit',
+    'Riverside', 'Phoenix', 'Seattle', 'Minneapolis',
+    'San Diego', 'St. Louis', 'Tampa', 'Baltimore',
+    'Denver', 'Pittsburgh', 'Portland', 'Sacramento',
+    'San Antonio', 'Orlando', 'Cincinnati', 'Cleveland',
+    'Kansas City', 'Las Vegas', 'San Jose', 'Columbus'
+];
 var SKILLMATRIX = {
     'F': [ 'W', 'K', 'P', 'R', 'G', 'T' ],
     'H': [ 'W', 'K', 'P', 'R' ],
