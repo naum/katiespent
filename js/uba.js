@@ -218,7 +218,8 @@ var UBA = {
         },
         replenish: function() {
             $.ajax({
-                url: '/words.txt', 
+                //url: '/words.txt', 
+                url: '/words7.txt', 
                 async: false, 
                 success: function(d) {
                     var wordlist = d.split('\n');
